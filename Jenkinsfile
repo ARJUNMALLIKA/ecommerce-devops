@@ -11,15 +11,14 @@ pipeline {
 
         stage('Maven Build') {
             steps {
-                sh './mvnw clean package'
+                sh './mvnw -B -ntp clean package'
             }
         }
 
         stage('Test') {
             steps {
-                sh './mvnw test'
+                sh './mvnw -B -ntp test'
             }
         }
-
     }
 }
