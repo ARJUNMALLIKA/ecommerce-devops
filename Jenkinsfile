@@ -1,5 +1,4 @@
 pipeline {
-
     agent any
 
     stages {
@@ -42,12 +41,13 @@ pipeline {
                 }
             }
         }
-    }
-}
-stage('Kubernetes Deploy') {
-    steps {
-        sh 'kubectl apply -f k8s/deployment.yaml'
-        sh 'kubectl apply -f k8s/service.yaml'
-        sh 'kubectl rollout status deployment/ecommerce-app'
+
+        stage('Kubernetes Deploy') {
+            steps {
+                sh 'kubectl apply -f k8s/deployment.yaml'
+                sh 'kubectl apply -f k8s/service.yaml'
+                sh 'kubectl rollout status deployment/ecommerce-app'
+            }
+        }
     }
 }
